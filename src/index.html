@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Accessibility</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header_inner">
+      <h1>Web Accessibility</h1>
+      <button id="js-humberger" type="button" class="humberger" aria-controls="navigation" aria-label="メインメニュー" aria-expanded="false">
+        <span class="visually-hidden">Menu</span>
+        <span class="humberger_line"></span>
+      </button>
+      <div class="header_nav-area js-nav-area" id="navigation" aria-hidden="true">
+        <nav id="js-global-navigation" class="global-navigation">
+          <ul class="global-navigation_list">
+            <li class="global-navigation_item">
+              <a href="#" class="global-navigation_link">
+                メニュー
+              </a>
+            </li>
+            <li class="global-navigation_item">
+              <button type="button" class="global-navigation_link -accordion js-sp-accordion-trigger"
+                aria-expanded='false' aria-controls="accordion1">
+                親メニュー
+              </button>
+              <div id="accordion1" class="accordion js-accordion">
+                <ul class="accordion_list">
+                  <li class="accordion_item">
+                    <a href="#" class="accordion_link">
+                      子メニュー
+                    </a>
+                  </li>
+                  <li class="accordion_item">
+                    <a href="#" class="accordion_link">
+                      子メニュー
+                    </a>
+                  </li>
+                  <li class="accordion_item">
+                    <a href="#" class="accordion_link">
+                      子メニュー
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="global-navigation_item">
+              <a href="#" class="global-navigation_link">
+                メニュー
+              </a>
+            </li>
+          </ul>
+          <div id="js-focus-trap" tabindex="0"></div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <script src="./js/main.js" defer></script>
+</body>
+
+</html>
