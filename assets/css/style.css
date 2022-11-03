@@ -11,6 +11,13 @@ a {
   font-family: sans-serif;
   text-decoration: none;
   color: #333;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+@media (hover: hover) {
+  a:hover {
+    opacity: 0.6;
+  }
 }
 
 @-webkit-keyframes menuShow {
@@ -134,10 +141,22 @@ a {
 }
 
 .header_home {
+  -webkit-align-self: stretch;
+      -ms-flex-item-align: stretch;
+          align-self: stretch;
   font-size: 20px;
 }
 
 .header_home_link {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
@@ -188,8 +207,8 @@ a {
   padding: 10px 0;
   color: #fff;
   font-weight: 900;
-  -webkit-transition: color 0.4s;
-  transition: color 0.4s;
+  -webkit-transition: color 0.5s opacity 0.5s;
+  transition: color 0.5s opacity 0.5s;
   font-size: 24px;
 }
 .header_navigation_link.-accordion {
@@ -212,10 +231,10 @@ a {
   background-color: #ed3242;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  -webkit-transition: -webkit-transform 0.4s;
-  transition: -webkit-transform 0.4s;
-  transition: transform 0.4s;
-  transition: transform 0.4s, -webkit-transform 0.4s;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
 }
 .header_navigation_link.-accordion::before {
   content: "";
@@ -238,12 +257,15 @@ a {
   height: 0;
   overflow: hidden;
   visibility: hidden;
-  -webkit-transition: visibility 0.4s, height 0.4s, padding 0.4s;
-  transition: visibility 0.4s, height 0.4s, padding 0.4s;
+  -webkit-transition: visibility 0.5s, height 0.5s, padding 0.5s;
+  transition: visibility 0.5s, height 0.5s, padding 0.5s;
 }
 .accordion.-active {
   visibility: visible;
   height: auto;
+  padding: 4px 0;
+}
+.accordion.-active .accordion_link {
   padding: 10px 0;
 }
 
@@ -253,9 +275,6 @@ a {
 
 .accordion_item {
   font-size: 0.75rem;
-}
-.accordion_item + li {
-  margin-top: 21px;
 }
 
 .accordion_link {

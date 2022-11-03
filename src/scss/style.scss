@@ -11,6 +11,13 @@ a {
   font-family: sans-serif;
   text-decoration: none;
   color: #333;
+  transition: opacity .5s;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: .6;
+    }
+  }
 }
 
 @keyframes menuShow {
@@ -103,10 +110,14 @@ a {
 }
 
 .header_home {
+  align-self: stretch;
   font-size: 20px;
 }
 
 .header_home_link {
+  display: flex;
+  align-items: center;
+  height: 100%;
   transition: opacity 0.5s;
 
   @media (hover: hover) {
@@ -155,7 +166,7 @@ a {
   padding: 10px 0;
   color: #fff;
   font-weight: 900;
-  transition: color 0.4s;
+  transition: color 0.5s opacity .5s;
   font-size: 24px;
 
   &.-accordion {
@@ -175,7 +186,7 @@ a {
       width: 2px;
       background-color: #ed3242;
       transform: translateY(-50%);
-      transition: transform 0.4s;
+      transition: transform 0.5s;
     }
 
     &::before {
@@ -200,12 +211,16 @@ a {
   height: 0;
   overflow: hidden;
   visibility: hidden;
-  transition: visibility 0.4s, height 0.4s, padding 0.4s;
+  transition: visibility 0.5s, height 0.5s, padding 0.5s;
 
   &.-active {
     visibility: visible;
     height: auto;
-    padding: 10px 0;
+    padding: 4px 0;
+    
+    .accordion_link {
+      padding: 10px 0;
+    }
   }
 }
 
@@ -215,10 +230,6 @@ a {
 
 .accordion_item {
   font-size: 0.75rem;
-
-  +li {
-    margin-top: 21px;
-  }
 }
 
 .accordion_link {
