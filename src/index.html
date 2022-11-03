@@ -12,22 +12,27 @@
 <body>
   <header class="header">
     <div class="header_inner">
-      <h1>Web Accessibility</h1>
-      <button id="js-humberger" type="button" class="humberger" aria-controls="navigation" aria-label="メインメニュー" aria-expanded="false">
+      <h1 class="header_home">
+        <a href="/" class="header_home_link">
+          Web Accessibility
+        </a>
+      </h1>
+      <button id="js-humberger" type="button" class="humberger" aria-controls="navigation" aria-label="メインメニュー"
+        aria-expanded="false">
         <span class="visually-hidden">Menu</span>
         <span class="humberger_line"></span>
       </button>
-      <div class="header_nav-area js-nav-area" id="navigation" aria-hidden="true">
-        <nav id="js-global-navigation" class="global-navigation">
-          <ul class="global-navigation_list">
-            <li class="global-navigation_item">
-              <a href="#" class="global-navigation_link">
+      <div class="header_navContainer js-nav" id="navigation" aria-hidden="true">
+        <nav id="js-navigation" class="header_navigation">
+          <ul class="header_navigation_list">
+            <li class="header_navigation_item">
+              <a href="#" class="header_navigation_link">
                 メニュー
               </a>
             </li>
-            <li class="global-navigation_item">
-              <button type="button" class="global-navigation_link -accordion js-sp-accordion-trigger"
-                aria-expanded='false' aria-controls="accordion1">
+            <li class="header_navigation_item">
+              <button type="button" class="header_navigation_link -accordion js-accordionTrigger" aria-expanded='false'
+                aria-controls="accordion1">
                 親メニュー
               </button>
               <div id="accordion1" class="accordion js-accordion">
@@ -50,13 +55,13 @@
                 </ul>
               </div>
             </li>
-            <li class="global-navigation_item">
-              <a href="#" class="global-navigation_link">
+            <li class="header_navigation_item">
+              <a href="#" class="header_navigation_link">
                 メニュー
               </a>
             </li>
           </ul>
-          <div id="js-focus-trap" tabindex="0"></div>
+          <div id="js-focusTrap" tabindex="0"></div>
         </nav>
       </div>
     </div>

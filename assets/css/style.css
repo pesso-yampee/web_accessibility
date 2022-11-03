@@ -10,35 +10,42 @@ ul {
 a {
   font-family: sans-serif;
   text-decoration: none;
+  color: #333;
 }
 
 @-webkit-keyframes menuShow {
   0% {
-    right: -100%;
     visibility: hidden;
+    opacity: 0;
+    display: none;
   }
   1% {
-    right: -100%;
     visibility: visible;
+    opacity: 0;
+    display: block;
   }
   100% {
-    right: 0;
     visibility: visible;
+    opacity: 1;
+    display: block;
   }
 }
 
 @keyframes menuShow {
   0% {
-    right: -100%;
     visibility: hidden;
+    opacity: 0;
+    display: none;
   }
   1% {
-    right: -100%;
     visibility: visible;
+    opacity: 0;
+    display: block;
   }
   100% {
-    right: 0;
     visibility: visible;
+    opacity: 1;
+    display: block;
   }
 }
 .humberger {
@@ -124,38 +131,52 @@ a {
   padding: 8px 20px;
 }
 
-.header_nav-area {
-  position: fixed;
-  top: 0;
-  right: -100%;
+.header_home {
+  font-size: 20px;
+}
+
+.header_home_link {
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+@media (hover: hover) {
+  .header_home_link:hover {
+    opacity: 0.7;
+  }
+}
+
+.header_navContainer {
   z-index: 9;
+  position: fixed;
+  display: none;
+  top: 56px;
   height: 100vh;
   width: 300px;
-  margin-top: 64px;
   background-color: #333;
 }
-.header_nav-area[aria-hidden=true] {
+.header_navContainer[aria-hidden=true] {
   visibility: hidden;
 }
-.header_nav-area.-active {
-  right: 0;
+.header_navContainer.-active {
   visibility: visible;
+  opacity: 1;
+  display: block;
   -webkit-animation: menuShow 0.5s linear;
           animation: menuShow 0.5s linear;
 }
 
-.global-navigation {
+.header_navigation {
   padding-top: 40px;
   padding-right: 25px;
   padding-bottom: 120px;
   padding-left: 25px;
 }
 
-.global-navigation_item {
+.header_navigation_item {
   border-bottom: 2px solid #e7e9ee;
 }
 
-.global-navigation_link {
+.header_navigation_link {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -175,7 +196,7 @@ a {
   transition: color 0.4s;
   font-size: 0.875rem;
 }
-.global-navigation_link.-accordion {
+.header_navigation_link.-accordion {
   position: relative;
   background: none;
   border: none;
@@ -184,7 +205,7 @@ a {
           appearance: none;
   width: 100%;
 }
-.global-navigation_link.-accordion::after {
+.header_navigation_link.-accordion::after {
   content: "";
   display: block;
   height: 12px;
@@ -200,7 +221,7 @@ a {
   transition: transform 0.4s;
   transition: transform 0.4s, -webkit-transform 0.4s;
 }
-.global-navigation_link.-accordion::before {
+.header_navigation_link.-accordion::before {
   content: "";
   display: block;
   height: 2px;
@@ -212,7 +233,7 @@ a {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
-.global-navigation_link.-active::after {
+.header_navigation_link.-active::after {
   -webkit-transform: translateY(-50%) rotate(-90deg);
           transform: translateY(-50%) rotate(-90deg);
 }
