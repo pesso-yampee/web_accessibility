@@ -191,8 +191,8 @@ a {
   visibility: visible;
   opacity: 1;
   display: block;
-  -webkit-animation: menuShow 0.5s ease-out;
-          animation: menuShow 0.5s ease-out;
+  -webkit-animation: menuShow 0.3s ease-out;
+          animation: menuShow 0.3s ease-out;
 }
 
 .header_navigation {

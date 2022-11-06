@@ -21,7 +21,7 @@ class ToggleShowMenu {
       },
     ];
     this.closeMenuAnimateDuration = {
-      duration: 500,
+      duration: 300,
     };
   }
 
@@ -34,7 +34,7 @@ class ToggleShowMenu {
       this.menu.animate(this.closeMenuAnimate, this.closeMenuAnimateDuration);
       setTimeout(() => {
         this.menu.style.display = "none";
-      }, 500);
+      }, 300);
       this._backgroundFix(false);
       this.currentTarget.setAttribute("aria-expanded", "false");
       this.menu.setAttribute("aria-hidden", "true");
@@ -118,7 +118,7 @@ class ToggleAccordion {
       },
     ];
     this.openAccordionOptions = {
-      duration: 500,
+      duration: 300,
     };
     
     this.accordionContents.style.display = "block";
@@ -139,7 +139,7 @@ class ToggleAccordion {
       },
     ];
     this.closeAccordionOptions = {
-      duration: 500,
+      duration: 300,
     };
     this.accordionContents.animate(
       this.closeAccordionKeyframes(this.accordionContents),
@@ -147,7 +147,7 @@ class ToggleAccordion {
     );
     setTimeout(() => {
       this.accordionContents.style.display = "none";
-    }, 500);
+    }, 300);
   }
 }
 
