@@ -1,52 +1,4 @@
 window.addEventListener("DOMContentLoaded", () => {
-  // メニュー展開時に背景を固定
-  const backgroundFix = (bool) => {
-    const scrollingElement = () => {
-      if ("scrollingElement" in document) return document.scrollingElement;
-      return document.documentElement;
-    };
-
-    const scrollY = bool
-      ? scrollingElement().scrollTop
-      : parseInt(document.body.style.top || "0");
-
-    const fixedStyles = {
-      height: "100vh",
-      position: "fixed",
-      top: `${scrollY * -1}px`,
-      left: "0",
-      width: "100vw",
-    };
-
-    Object.keys(fixedStyles).forEach((key) => {
-      document.body.style[key] = bool ? fixedStyles[key] : "";
-    });
-
-    if (!bool) {
-      window.scrollTo(0, scrollY * -1);
-    }
-  };
-
-  //escキー押下でメニューを閉じられるように
-  const closeMenuByEscapeKey = (props) => {
-    const e = props.e;
-    const CLASS = props.class;
-    const humberger = props.humberger;
-    let flag = props.flag;
-
-    if (e.key === "Escape") {
-      humberger.classList.remove(CLASS);
-      menu.classList.remove(CLASS);
-
-      backgroundFix(false);
-      humberger.focus();
-      humberger.setAttribute("aria-expanded", "false");
-      flg = false;
-    }
-
-    return flag;
-  };
-
   // 変数定義
   const CLASS = "-active";
   const humberger = document.getElementById("js-humberger");
@@ -64,7 +16,9 @@ window.addEventListener("DOMContentLoaded", () => {
       flg: flg,
     };
 
-    new ToggleShowMenu(props);
+    const toggleShowMenu = new ToggleShowMenu(props);
+
+    flg = toggleShowMenu.toggleStatus();
   });
 
   window.addEventListener("keydown", (e) => {
@@ -75,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
       flg: flg,
     };
 
-    closeMenuByEscapeKey(props);
+    new closeMenuByEscapeKey(props);
   });
 
   accordionTrigger.forEach((item) => {
@@ -86,7 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
         accordionFlg: accordionFlg,
       };
 
-      accordionFlg = new ToggleAccordion(props);
+      new ToggleAccordion(props);
     });
   });
 
@@ -104,26 +58,6 @@ class ToggleShowMenu {
     this.currentTarget = this.e.currentTarget;
     this.menu = props.menu;
     this.flg = props.flg;
-    this.openMenuAnimate = [
-      {
-        visibility: "hidden",
-        opacity: 0,
-        display: "none",
-      },
-      {
-        visibility: "hidden",
-        opacity: 0,
-        display: "block",
-      },
-      {
-        visibility: "visible",
-        opacity: 1,
-        display: "block",
-      },
-    ];
-    this.openMenuAnimateDuration = {
-      duration: 500,
-    };
     this.closeMenuAnimate = [
       {
         visibility: "visible",
@@ -141,11 +75,10 @@ class ToggleShowMenu {
     this.closeMenuAnimateDuration = {
       duration: 500,
     };
-    this._toggleStatus();
   }
 
   //ハンバーガーボタンが選択されたら
-  _toggleStatus() {
+  toggleStatus() {
     this.currentTarget.classList.toggle(this.CLASS);
     this.menu.classList.toggle(this.CLASS);
     if (this.flg) {
@@ -154,18 +87,47 @@ class ToggleShowMenu {
       setTimeout(() => {
         this.menu.style.display = "none";
       }, 500);
-      // backgroundFix(false);
+      this._backgroundFix(false);
       this.currentTarget.setAttribute("aria-expanded", "false");
       this.menu.setAttribute("aria-hidden", "true");
       this.currentTarget.focus();
       this.flg = false;
     } else {
       this.menu.style.display = "";
-      this.menu.animate(this.openMenuAnimate, this.openMenuAnimateDuration);
-      // backgroundFix(true);
+      this._backgroundFix(true);
       this.menu.setAttribute("aria-hidden", "false");
       this.currentTarget.setAttribute("aria-expanded", "true");
       this.flg = true;
+    }
+
+    return this.flg;
+  }
+
+  // メニュー展開時に背景を固定
+  _backgroundFix(bool) {
+    this.scrollingElement = () => {
+      if ("scrollingElement" in document) return document.scrollingElement;
+      return document.documentElement;
+    };
+
+    this.scrollY = bool
+      ? this.scrollingElement().scrollTop
+      : parseInt(document.body.style.top || "0");
+
+    this.fixedStyles = {
+      height: "100vh",
+      position: "fixed",
+      top: `${this.scrollY * -1}px`,
+      left: "0",
+      width: "100vw",
+    };
+
+    Object.keys(this.fixedStyles).forEach((key) => {
+      document.body.style[key] = bool ? this.fixedStyles[key] : "";
+    });
+
+    if (!bool) {
+      window.scrollTo(0, this.scrollY * -1);
     }
   }
 }
@@ -194,5 +156,28 @@ class ToggleAccordion {
     }
 
     return this.accordionFlg;
+  }
+}
+
+//escキー押下でメニューを閉じられるように
+class closeMenuByEscapeKey {
+  constructor(props) {
+    this.e = props.event;
+    this.CLASS = props.class;
+    this.humberger = props.humberger;
+    this.flg = props.flg;
+    this._changeStatus();
+  }
+
+  _changeStatus() {
+    if (this.e.key === "Escape") {
+      this.humberger.classList.remove(CLASS);
+      this.menu.classList.remove(CLASS);
+
+      backgroundFix(false);
+      this.humberger.focus();
+      this.humberger.setAttribute("aria-expanded", "false");
+      this.flg = false;
+    }
   }
 }
