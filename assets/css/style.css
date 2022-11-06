@@ -55,6 +55,9 @@ a {
     display: block;
   }
 }
+/** -----------------------------------
+  humberger
+----------------------------------- */
 .humberger {
   z-index: 10;
   display: -webkit-box;
@@ -118,6 +121,9 @@ a {
   top: 6px;
 }
 
+/** -----------------------------------
+  header
+----------------------------------- */
 .header {
   width: 100%;
   -webkit-box-shadow: 0 2px 5px rgba(51, 51, 51, 0.3);
@@ -166,6 +172,9 @@ a {
   }
 }
 
+/** -----------------------------------
+  modal navgation
+----------------------------------- */
 .header_navContainer {
   z-index: 9;
   position: fixed;
@@ -255,20 +264,12 @@ a {
           transform: translateY(-50%) rotate(-90deg);
 }
 
+/** -----------------------------------
+  accordion
+----------------------------------- */
 .accordion {
-  height: 0;
   overflow: hidden;
-  visibility: hidden;
-  -webkit-transition: visibility 0.5s, height 0.5s, padding 0.5s;
-  transition: visibility 0.5s, height 0.5s, padding 0.5s;
-}
-.accordion.-active {
-  visibility: visible;
-  height: auto;
-  padding: 4px 0;
-}
-.accordion.-active .accordion_link {
-  padding: 10px 0;
+  display: none;
 }
 
 .accordion_list {
@@ -281,6 +282,7 @@ a {
 
 .accordion_link {
   display: block;
+  padding: 10px 0;
   color: #fff;
 }
 

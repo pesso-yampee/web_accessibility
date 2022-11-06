@@ -40,6 +40,9 @@ a {
   }
 }
 
+/** -----------------------------------
+  humberger
+----------------------------------- */
 .humberger {
   z-index: 10;
   display: flex;
@@ -97,6 +100,9 @@ a {
   }
 }
 
+/** -----------------------------------
+  header
+----------------------------------- */
 .header {
   width: 100%;
   box-shadow: 0 2px 5px rgba(#333, 0.3);
@@ -127,6 +133,9 @@ a {
   }
 }
 
+/** -----------------------------------
+  modal navgation
+----------------------------------- */
 .header_navContainer {
   z-index: 9;
   position: fixed;
@@ -204,21 +213,12 @@ a {
   }
 }
 
+/** -----------------------------------
+  accordion
+----------------------------------- */
 .accordion {
-  height: 0;
   overflow: hidden;
-  visibility: hidden;
-  transition: visibility 0.5s, height 0.5s, padding 0.5s;
-
-  &.-active {
-    visibility: visible;
-    height: auto;
-    padding: 4px 0;
-    
-    .accordion_link {
-      padding: 10px 0;
-    }
-  }
+  display: none;
 }
 
 .accordion_list {
@@ -231,6 +231,7 @@ a {
 
 .accordion_link {
   display: block;
+  padding: 10px 0;
   color: #fff;
 }
 

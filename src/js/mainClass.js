@@ -86,43 +86,85 @@ class ToggleAccordion {
     this.e = props.event;
     this.CLASS = props.CLASS;
     this.accordionFlg = props.accordionFlg;
-    this._toggleStatus();
+    this.accordionContents = this.e.currentTarget.nextElementSibling;
   }
 
-  _toggleStatus() {
+  toggleStatus() {
     this.e.currentTarget.classList.toggle(this.CLASS);
-    this.e.currentTarget.nextElementSibling.classList.toggle(this.CLASS);
+    this.accordionContents.classList.toggle(this.CLASS);
 
     if (this.accordionFlg) {
-      // 開く処理
+      // 閉じる処理
+      this._closeAccordionContents();
       this.e.currentTarget.setAttribute("aria-expanded", "false");
       this.accordionFlg = false;
     } else {
-      // 閉じる処理
+      // 開く処理
+      this._openAccordionContents();
       this.e.currentTarget.setAttribute("aria-expanded", "true");
       this.accordionFlg = true;
     }
 
     return this.accordionFlg;
   }
+
+  _openAccordionContents() {
+    this.openAccordionKeyframes = (contents) => [
+      {
+        height: 0,
+      },
+      {
+        height: contents.offsetHeight + "px",
+      },
+    ];
+    this.openAccordionOptions = {
+      duration: 500,
+    };
+    
+    this.accordionContents.style.display = "block";
+    this.accordionContents.animate(
+      this.openAccordionKeyframes(this.accordionContents),
+      this.openAccordionOptions
+    );
+
+  }
+
+  _closeAccordionContents() {
+    this.closeAccordionKeyframes = (contents) => [
+      {
+        height: contents.offsetHeight + "px",
+      },
+      {
+        height: 0,
+      },
+    ];
+    this.closeAccordionOptions = {
+      duration: 500,
+    };
+    this.accordionContents.animate(
+      this.closeAccordionKeyframes(this.accordionContents),
+      this.closeAccordionOptions
+    );
+    setTimeout(() => {
+      this.accordionContents.style.display = "none";
+    }, 500);
+  }
 }
 
 //escキー押下でメニューを閉じられるように
-class closeMenuByEscapeKey {
+class closeMenuByEscapeKey extends ToggleShowMenu {
   constructor(props) {
-    this.e = props.event;
-    this.CLASS = props.class;
+    super(props);
     this.humberger = props.humberger;
-    this.flg = props.flg;
     this._changeStatus();
   }
 
   _changeStatus() {
     if (this.e.key === "Escape") {
-      this.humberger.classList.remove(CLASS);
-      this.menu.classList.remove(CLASS);
+      this.humberger.classList.remove(this.CLASS);
+      this.menu.classList.remove(this.CLASS);
 
-      backgroundFix(false);
+      this._backgroundFix(false);
       this.humberger.focus();
       this.humberger.setAttribute("aria-expanded", "false");
       this.flg = false;

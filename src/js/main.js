@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", () => {
-  // 変数定義
   const CLASS = "-active";
   const humberger = document.getElementById("js-humberger");
   const focusTrap = document.getElementById("js-focusTrap");
@@ -8,6 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let flg = false;
   let accordionFlg = false;
 
+  // ハンバーガーメニュー開閉制御
   humberger.addEventListener("click", (e) => {
     const props = {
       event: e,
@@ -21,11 +21,13 @@ window.addEventListener("DOMContentLoaded", () => {
     flg = toggleShowMenu.toggleStatus();
   });
 
+  // escapeキー押下でハンバーガーメニューを閉じれるように
   window.addEventListener("keydown", (e) => {
     const props = {
       event: e,
       CLASS: CLASS,
       humberger: humberger,
+      menu: menu,
       flg: flg,
     };
 
@@ -40,7 +42,8 @@ window.addEventListener("DOMContentLoaded", () => {
         accordionFlg: accordionFlg,
       };
 
-      new ToggleAccordion(props);
+      const toggleAccordion = new ToggleAccordion(props);
+      accordionFlg = toggleAccordion.toggleStatus();
     });
   });
 
